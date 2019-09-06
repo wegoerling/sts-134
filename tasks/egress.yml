@@ -1,0 +1,172 @@
+title: EGRESS/SETUP
+duration: 00:25
+
+steps:
+  # First steps in IV column (first column)
+  - simo:
+      IV:
+        - step: Record PET start time ____:____ (Pwr to Batt)
+        - step: Start WVS Recorders
+          images: ./WVSRecorders.png
+      EV1:
+        - step: '{{CHECK}} All gates closed & hooks locked'
+          title: '**Initial Configuration**'
+          checkboxes:
+            - '{{CHECKMARK}} R Waist Tether to EV2 Blank hook'
+            - '{{CHECKMARK}} Red hook on L D-ring ext'
+            - '{{CHECKMARK}} Yellow hook on Green ERCM'
+            - '{{CHECKMARK}} Green hook on Red ERCM'
+            - '{{CHECKMARK}} Blank hook on MWS'
+      EV2:
+        - step: '{{CHECK}} All gates closed & hooks locked'
+          title: '*Initial Configuration*'
+          checkboxes:
+            - '{{CHECKMARK}} All gates closed & hooks locked'
+            - '{{CHECKMARK}} R Waist Tether to A/L D-ring ext'
+            - '{{CHECKMARK}} Red hook on L D-ring ext'
+            - '{{CHECKMARK}} Yellow hook on Green ERCM'
+            - '{{CHECKMARK}} Green hook on Red ERCM'
+            - '{{CHECKMARK}} Blank hook to EV1 R Waist Tether'
+
+  # FIXME: How to handle "EGRESS/SETUP" header after initial configuration.
+
+  # EV1's step "open thermal cover" should really drive the IV's step to start a
+  # clock. The steps below show the YAML equivalent to the STS-134 procedure.
+  - simo:
+      EV1:
+        - step: Open hatch thermal cover
+          title: EGRESS/SETUP (00:25)
+        - step: Egress A/L
+      IV: 'Start Hatch thermal cover clock PET (30 min) ____:____'
+
+  # # The next step is an ALTERNATE to the EV1 and IV steps above that merges
+  # # these into a single block (since one drives the other).
+  # -simo:
+  #   - IV + EV1:
+  #       - step: 'EV1 open thermal cover. IV start clock (30 min) ____:____'
+
+  # And here's another alternate. This would indicate that one step has a step
+  # in another column that must follow it.
+  # - EV1: Open hatch thermal cover
+  #   causes:
+  #    - IV: 'Start Hatch Thermal Cover clock PET (30 min) ____:____'
+
+  - IV + EV1:
+    - step: "This is a test"
+
+  # # # End of alternate methods # # #
+  - simo:
+      EV1:
+        - step: Receive EWC ORU bag from EV3, stow on BRT w/RET
+      EV2:
+        - step: Transfer EWC ORU Bag to EV1
+          checkboxes:
+            - Position CETA ORU bag near hatch
+        - step: This is a step
+          note:
+            - "Connector ops may be done in any order. Defer moving toaster and AM radio as desired"
+          caution:
+            - |
+              Avoid contact with: Tires and Car mirrors, blue paint on zenith side of Rear View Mirror
+              (RVM), Door Handle petals, trailer hitches alignment guide and attachement shaft,
+              exposed bolts of underside of the hood latch restraint, radio antenna and back up
+              camera, and in-car Bluetooth and forward lights (translation on base of radio antenna
+              and lower half of lights is acceptable).
+            - Avoid imparting any loads in the forward direction into car until brakes are engaged.
+          warning: "If Portable Wireless Toaster will not power on, avoid inadvertent contact (may fall below touch temp limits)"
+          comment:
+            - "a comment"
+
+      EV2: Egress A/L
+
+  # FIXME: Perhaps this should be a "simo" block. Two essentially identical sets
+  #        of steps, one in each column, performed at the same time. How to
+  #        visually indicate "simo" in the display format (not in YAML)?
+  - simo:
+      EV2:
+        - step: Perform buddy checks
+          checkboxes:
+            - MWS tabs up
+            - BRT tab up
+            - tether configs
+        - step: Verify SAFER config
+          checkboxes:
+            - '{{CHECKMARK}}L handle down (MAN ISOL Vlv - Open)'
+            - '{{CHECKMARK}}R handle down (HCM - Closed)'
+        - step: '{{CHECKMARK}}WVS - Green LED'
+
+      IV:
+        - step: 'Post crew egress, WVS Software:'
+          substeps:
+            - step: select page - RF camera.
+            - step: Sel 'Advanced Controls'
+            # I'm not sure about the indenting on this one in the real procedure. We
+            # don't do all these steps anymore.
+            - step: S-Band Level (two) - Max
+  - simo:
+      EV1:
+        - step: Perform buddy checks
+          checkboxes:
+            - MWS tabs up
+            - BRT tab up
+            - tether configs
+        - step: Verify SAFER config
+          checkboxes:
+            - '{{CHECKMARK}}L handle down (MAN ISOL Vlv - Open)'
+            - '{{CHECKMARK}}R handle down (HCM - Closed)'
+        - step: '{{CHECKMARK}}WVS - Green LED'
+      # EV2's steps are a copy/paste of EV1.
+      EV2:
+        - step: Perform buddy checks
+          checkboxes:
+            - MWS tabs up
+            - BRT tab up
+            - tether configs
+        - step: Verify SAFER config
+          checkboxes:
+            - '{{CHECKMARK}}L handle down (MAN ISOL Vlv - Open)'
+            - '{{CHECKMARK}}R handle down (HCM - Closed)'
+        - step: '{{CHECKMARK}}WVS - Green LED'
+  # MediaWiki formatter in place later.
+  - simo:
+      EV1:
+        - step: Translate to S0 Port Struts
+        - step: Attach EV1 **BLANK** hook to port-outboard strut
+          checkboxes:
+            - '{{CHECKMARK}} Gat closed, hook locked, reels unlocked, release RET'
+        - step: Attach EV2 **BLANK** hook to port-inboard strut
+          checkboxes:
+            - '{{CHECKMARK}} Gate closed, hook locked'
+        - step: Release EV1 R Waist Tether from EV2 **BLANK** hook
+      EV2:
+        - step: Retrieve CETA ORU bag, stow on BRT with RET
+
+  # This corresponds to page 7-20, EV1 step 12 and EV2 step 8. I've re-written
+  # it to be one step in a shared (merged) column.
+  - simo:
+      EV1:
+        - step: Give **EV3 GO** to release Waist Tether
+      EV2:
+        - step: On **EV1 GO**, EV2 release right Waist Tether from Airlock internal D-Ring
+
+  - simo:
+      EV1:
+        - step: Translate forward along Lab.
+        # "HR" means "handrail". At some point in the future it may be cool to use
+        # some sort of template here like: "on Lab HR {{HR|0260}}, {{HR|0259}} ..."
+        # that allows us to generate links to our CAD/VR model of the space station.
+        # This way people who are reading along and thinking "where is HR 0260" can
+        # just click a link and see in the model (assuming they're viewing in an
+        # HTML, not printed, version).
+        - step: Stow EWC ORU bag on Lab HR 0260, 0259 with hinge ISS aft
+        - step: Translate to S1 Face 1, zenith - MISSE 7 Retrieve
+      EV2:
+        - step: Close hatch thermal cover
+        # best here would be to add IV's step using "causes".
+        # causes:
+        # - IV: "Stop Hatch Thermal Cover clock PET (30 min) ____:____"
+        - step: Perform translation adaptation
+        - step: Translate to S1 Face 1, nadir - MISSE 7 Retrieve
+      # If not able to do the "causes" block above, do this:
+  - IV:
+    - step: 'Stop Hatch Thermal Cover clock PET (30 min) ____:____'

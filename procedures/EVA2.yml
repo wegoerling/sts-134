@@ -1,0 +1,12 @@
+procedure_name: STS-134 EVA 2
+actors:
+  - role: IV
+    name: SSRMS
+  - role: EV1
+    name: Sally
+  - role: EV2
+    name: Joe
+
+tasks:
+  - file: egress.yml
+  - file: misse7.yml
