@@ -18,6 +18,7 @@ steps:
         - warning: Do not touch the hinged side while closing the MISSE PECs (Pinch Point)
         - caution:
             - Beware sharp stuff!
+            - Also beware gooey things.
             - Avoid inadverntent contat with the deployed MISSE PECs, which have shatterable materials, and the silver avionics boxes atop the ExPA
             - There isn't a second caution in this block, but I wanted to add one here to show that there could be (also for "warning" and "note" blocks).
 
