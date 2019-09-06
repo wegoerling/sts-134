@@ -1,0 +1,9 @@
+stages:
+- build
+
+xops-build:
+  stage: build
+  image: xoperations/xops:latest
+  script:
+    - xops build -vv
+
