@@ -6,4 +6,8 @@ xops-build:
   image: xoperations/xops:latest
   script:
     - xops build -vv
+  artifacts:
+    paths:
+    - ./build/*
+    expire_in: 1 week
 
