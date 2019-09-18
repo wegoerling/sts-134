@@ -7,6 +7,19 @@ actors:
   - role: EV2
     name: Joe
 
+
+columns:
+  - key: IV
+    display: IV/SSRMS
+    actors: "*"
+  - key: EV1
+    actors: EV1
+    display: EV1 (Sally)
+  - key: EV2
+    actors: EV2
+    display: EV2 (Joe)
+
+
 tasks:
   - file: egress.yml
   - file: misse7.yml

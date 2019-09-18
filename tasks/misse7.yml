@@ -89,8 +89,7 @@ steps:
   - EV2:
       - step: 'Release PEC 7B (2 PIP pins), stow on BRT w/RET (nadir HR)'
         checkboxes: Reinstall Socket PIP pins (2)
-      - step:
-          - 'Release PEC 7A (release 2 PIP pins), stow on BRT w/RET (RAM HR)'
+      - step: 'Release PEC 7A (release 2 PIP pins), stow on BRT w/RET (RAM HR)'
         checkboxes:
           - Reinstall Socket PIP pins (2)
 

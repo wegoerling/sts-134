@@ -7,6 +7,18 @@ actors:
   - role: EV2
     name: Taz
 
+columns:
+  - key: IV
+    display: IV/SSRMS
+    actors: "*"
+  - key: EV1
+    actors: EV1
+    display: EV1 (Drew)
+  - key: EV2
+    actors: EV2
+    display: EV2 (Taz)
+
+
 tasks:
   - file: egress.yml
   - file: misse7.yml
