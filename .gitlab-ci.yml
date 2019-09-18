@@ -5,7 +5,7 @@ xops-build:
   stage: build
   image: xoperations/xops:latest
   script:
-    - xops build -vv
+    - pat build -vv
   artifacts:
     paths:
     - ./build/*

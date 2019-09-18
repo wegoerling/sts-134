@@ -1,11 +1,18 @@
 procedure_name: STS-134 EVA 1
-actors:
-  - role: IV
-    name: SSRMS
-  - role: EV1
-    name: Drew
-  - role: EV2
-    name: Taz
+
+# Actors _probably_ don't need to be defined anymore. Instead define columns,
+# since what actor gets applied to what column needs to be defined at the
+# procedure level. Actors can be added on the fly. Perhaps at some point a list
+# of valid actors could/should be added at the procedure level to validate for
+# typos or otherwise unexpected actors being added to a procedure.
+#
+# actors:
+#   - role: IV
+#     name: SSRMS
+#   - role: EV1
+#     name: Drew
+#   - role: EV2
+#     name: Taz
 
 columns:
   - key: IV

@@ -7,26 +7,28 @@ steps:
       IV:
         - step: Record PET start time ____:____ (Pwr to Batt)
         - step: Start WVS Recorders
-          images: ./WVSRecorders.png
+        - images:
+            - path: safety-tether-config.png
+              width: 400
       EV1:
         - step: '{{CHECK}} All gates closed & hooks locked'
           title: '**Initial Configuration**'
           checkboxes:
-            - '{{CHECKMARK}} R Waist Tether to EV2 Blank hook'
-            - '{{CHECKMARK}} Red hook on L D-ring ext'
-            - '{{CHECKMARK}} Yellow hook on Green ERCM'
-            - '{{CHECKMARK}} Green hook on Red ERCM'
-            - '{{CHECKMARK}} Blank hook on MWS'
+            - '{{CHECK}} R Waist Tether to EV2 Blank hook'
+            - '{{CHECK}} Red hook on L D-ring ext'
+            - '{{CHECK}} Yellow hook on Green ERCM'
+            - '{{CHECK}} Green hook on Red ERCM'
+            - '{{CHECK}} Blank hook on MWS'
       EV2:
         - step: '{{CHECK}} All gates closed & hooks locked'
           title: '*Initial Configuration*'
           checkboxes:
-            - '{{CHECKMARK}} All gates closed & hooks locked'
-            - '{{CHECKMARK}} R Waist Tether to A/L D-ring ext'
-            - '{{CHECKMARK}} Red hook on L D-ring ext'
-            - '{{CHECKMARK}} Yellow hook on Green ERCM'
-            - '{{CHECKMARK}} Green hook on Red ERCM'
-            - '{{CHECKMARK}} Blank hook to EV1 R Waist Tether'
+            - '{{CHECK}} All gates closed & hooks locked'
+            - '{{CHECK}} R Waist Tether to A/L D-ring ext'
+            - '{{CHECK}} Red hook on L D-ring ext'
+            - '{{CHECK}} Yellow hook on Green ERCM'
+            - '{{CHECK}} Green hook on Red ERCM'
+            - '{{CHECK}} Blank hook to EV1 R Waist Tether'
 
   # FIXME: How to handle "EGRESS/SETUP" header after initial configuration.
 
@@ -92,9 +94,9 @@ steps:
             - tether configs
         - step: Verify SAFER config
           checkboxes:
-            - '{{CHECKMARK}}L handle down (MAN ISOL Vlv - Open)'
-            - '{{CHECKMARK}}R handle down (HCM - Closed)'
-        - step: '{{CHECKMARK}}WVS - Green LED'
+            - '{{CHECK}}L handle down (MAN ISOL Vlv - Open)'
+            - '{{CHECK}}R handle down (HCM - Closed)'
+        - step: '{{CHECK}}WVS - Green LED'
 
       IV:
         - step: 'Post crew egress, WVS Software:'
@@ -113,9 +115,9 @@ steps:
             - tether configs
         - step: Verify SAFER config
           checkboxes:
-            - '{{CHECKMARK}}L handle down (MAN ISOL Vlv - Open)'
-            - '{{CHECKMARK}}R handle down (HCM - Closed)'
-        - step: '{{CHECKMARK}}WVS - Green LED'
+            - '{{CHECK}}L handle down (MAN ISOL Vlv - Open)'
+            - '{{CHECK}}R handle down (HCM - Closed)'
+        - step: '{{CHECK}}WVS - Green LED'
       # EV2's steps are a copy/paste of EV1.
       EV2:
         - step: Perform buddy checks
@@ -125,19 +127,19 @@ steps:
             - tether configs
         - step: Verify SAFER config
           checkboxes:
-            - '{{CHECKMARK}}L handle down (MAN ISOL Vlv - Open)'
-            - '{{CHECKMARK}}R handle down (HCM - Closed)'
-        - step: '{{CHECKMARK}}WVS - Green LED'
+            - '{{CHECK}}L handle down (MAN ISOL Vlv - Open)'
+            - '{{CHECK}}R handle down (HCM - Closed)'
+        - step: '{{CHECK}}WVS - Green LED'
   # MediaWiki formatter in place later.
   - simo:
       EV1:
         - step: Translate to S0 Port Struts
         - step: Attach EV1 **BLANK** hook to port-outboard strut
           checkboxes:
-            - '{{CHECKMARK}} Gat closed, hook locked, reels unlocked, release RET'
+            - '{{CHECK}} Gat closed, hook locked, reels unlocked, release RET'
         - step: Attach EV2 **BLANK** hook to port-inboard strut
           checkboxes:
-            - '{{CHECKMARK}} Gate closed, hook locked'
+            - '{{CHECK}} Gate closed, hook locked'
         - step: Release EV1 R Waist Tether from EV2 **BLANK** hook
       EV2:
         - step: Retrieve CETA ORU bag, stow on BRT with RET

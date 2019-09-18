@@ -10,8 +10,8 @@ steps:
       IV:
         - step: Verify inhibits in place
           substeps:
-            - step: '{{CHECKMARK}} Stbd SARJ locked'
-            - step: '{{CHECKMARK}} MISSE/ELC-2 inhibits'
+            - step: '{{CHECK}} Stbd SARJ locked'
+            - step: '{{CHECK}} MISSE/ELC-2 inhibits'
     # This is a simo block that also includes merged columns. Complicated...
   - simo:
       EV1:
@@ -36,16 +36,16 @@ steps:
         # In 2018 the "GREEN" below would be green-colored text
         - step: Attach '''GREEN''' hook on S1 HR 3208 (bay 17)
           checkboxes:
-            - '{{CHECKMARK}} Gate closed, hook locked, reels unlocked, release RET'
+            - '{{CHECK}} Gate closed, hook locked, reels unlocked, release RET'
         - step: Translate zenith to ELC-2
           checkboxes:
             - Fairlead on S3 HR 3052 (face 1)
         # there's an icon for a camera here. Not required for now.
         - step: Photograph deployed PECs
           substeps:
-            - step: 'PEC 7B ({{CHECKMARK}} Ram/Fwd side, {{CHECKMARK}} Aft side)'
-            - step: 'PEC 7A ({{CHECKMARK}} Zenith side, {{CHECKMARK}} Nadir side)'
-            - step: '{{CHECKMARK}}{{CHECKMARK}} Overall View (2 angles)'
+            - step: 'PEC 7B ({{CHECK}} Ram/Fwd side, {{CHECK}} Aft side)'
+            - step: 'PEC 7A ({{CHECK}} Zenith side, {{CHECK}} Nadir side)'
+            - step: '{{CHECK}}{{CHECK}} Overall View (2 angles)'
 
       EV2:
         - step: Translate to S1 Face 6, nadir route
@@ -64,20 +64,20 @@ steps:
         checkboxes:
           - RET, remove cap from dummy connector J7B
           - Demate connector from PEC
-          - 'Mate connector to dummy connector J7B ({{CHECKMARK}} no FOD, pins)'
+          - 'Mate connector to dummy connector J7B ({{CHECK}} no FOD, pins)'
           - Install cap onto PEC 7B
 
   - simo:
       EV1:
         - step: Close PEC 7A
           checkboxes:
-            - '{{CHECKMARK}} All 4 PIP pins are re-installed'
+            - '{{CHECK}} All 4 PIP pins are re-installed'
       EV2:
         - step: Disconnect connector from PEC 7A
           checkboxes:
             - RET, remove cap from dummy connector J7A
             - Demate connector from PEC
-            - 'Mate connector to dummy connector J7A ({{CHECKMARK}} no FOD, pins)'
+            - 'Mate connector to dummy connector J7A ({{CHECK}} no FOD, pins)'
             - Install cap onto PEC 7A
 
   # Here I haven't put a "step" under EV2, but there is the "checkboxes". If
