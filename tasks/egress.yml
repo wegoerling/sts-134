@@ -51,8 +51,9 @@ steps:
   #   causes:
   #    - IV: 'Start Hatch Thermal Cover clock PET (30 min) ____:____'
 
-  - IV + EV1:
-    - step: "This is a test"
+  # THIS DOESN'T WORK YET
+  # - IV + EV1:
+  #   - step: "This is a test"
 
   # # # End of alternate methods # # #
   - simo:
