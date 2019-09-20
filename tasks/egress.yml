@@ -1,6 +1,17 @@
 title: EGRESS/SETUP
-duration: 00:25
 
+roles:
+  - name: crewA
+    description: Crewmember exiting A/L first, in charge of operating hatch
+    duration:
+      minutes: 25
+  - name: crewB
+    description: Crewmember exiting A/L second, in charge of operating UIA
+    duration:
+      minutes: 25
+
+    # [1]: If actor EV1 with actor name "Nick" were mapped to crewB, their column
+    #      header may be "EV1 - Nick (SSRMS)"
 steps:
   # First steps in IV column (first column)
   - simo:
@@ -9,17 +20,17 @@ steps:
         - step: Start WVS Recorders
         - images:
             - path: safety-tether-config.png
-              width: 400
-      EV1:
+              width: 250
+      crewA:
         - step: '{{CHECK}} All gates closed & hooks locked'
           title: '**Initial Configuration**'
           checkboxes:
-            - '{{CHECK}} R Waist Tether to EV2 Blank hook'
+            - '{{CHECK}} R Waist Tether to {{role:crewB}} Blank hook'
             - '{{CHECK}} Red hook on L D-ring ext'
             - '{{CHECK}} Yellow hook on Green ERCM'
             - '{{CHECK}} Green hook on Red ERCM'
             - '{{CHECK}} Blank hook on MWS'
-      EV2:
+      crewB:
         - step: '{{CHECK}} All gates closed & hooks locked'
           title: '*Initial Configuration*'
           checkboxes:
@@ -28,41 +39,41 @@ steps:
             - '{{CHECK}} Red hook on L D-ring ext'
             - '{{CHECK}} Yellow hook on Green ERCM'
             - '{{CHECK}} Green hook on Red ERCM'
-            - '{{CHECK}} Blank hook to EV1 R Waist Tether'
+            - '{{CHECK}} Blank hook to {{role:crewA}} R Waist Tether'
 
   # FIXME: How to handle "EGRESS/SETUP" header after initial configuration.
 
-  # EV1's step "open thermal cover" should really drive the IV's step to start a
+  # crewA's step "open thermal cover" should really drive the IV's step to start a
   # clock. The steps below show the YAML equivalent to the STS-134 procedure.
   - simo:
-      EV1:
+      crewA:
         - step: Open hatch thermal cover
           title: EGRESS/SETUP (00:25)
         - step: Egress A/L
       IV: 'Start Hatch thermal cover clock PET (30 min) ____:____'
 
-  # # The next step is an ALTERNATE to the EV1 and IV steps above that merges
+  # # The next step is an ALTERNATE to the crewA and IV steps above that merges
   # # these into a single block (since one drives the other).
   # -simo:
-  #   - IV + EV1:
-  #       - step: 'EV1 open thermal cover. IV start clock (30 min) ____:____'
+  #   - IV + crewA:
+  #       - step: '{{role:crewA}} open thermal cover. IV start clock (30 min) ____:____'
 
   # And here's another alternate. This would indicate that one step has a step
   # in another column that must follow it.
-  # - EV1: Open hatch thermal cover
+  # - crewA: Open hatch thermal cover
   #   causes:
   #    - IV: 'Start Hatch Thermal Cover clock PET (30 min) ____:____'
 
   # THIS DOESN'T WORK YET
-  # - IV + EV1:
+  # - IV + crewA:
   #   - step: "This is a test"
 
   # # # End of alternate methods # # #
   - simo:
-      EV1:
+      crewA:
         - step: Receive EWC ORU bag from EV3, stow on BRT w/RET
-      EV2:
-        - step: Transfer EWC ORU Bag to EV1
+      crewB:
+        - step: Transfer EWC ORU Bag to {{role:crewA}}
           checkboxes:
             - Position CETA ORU bag near hatch
         - step: This is a step
@@ -80,13 +91,13 @@ steps:
           comment:
             - "a comment"
 
-      EV2: Egress A/L
+      crewB: Egress A/L
 
   # FIXME: Perhaps this should be a "simo" block. Two essentially identical sets
   #        of steps, one in each column, performed at the same time. How to
   #        visually indicate "simo" in the display format (not in YAML)?
   - simo:
-      EV2:
+      crewB:
         - step: Perform buddy checks
           checkboxes:
             - MWS tabs up
@@ -107,7 +118,7 @@ steps:
             # don't do all these steps anymore.
             - step: S-Band Level (two) - Max
   - simo:
-      EV1:
+      crewA:
         - step: Perform buddy checks
           checkboxes:
             - MWS tabs up
@@ -118,8 +129,8 @@ steps:
             - '{{CHECK}}L handle down (MAN ISOL Vlv - Open)'
             - '{{CHECK}}R handle down (HCM - Closed)'
         - step: '{{CHECK}}WVS - Green LED'
-      # EV2's steps are a copy/paste of EV1.
-      EV2:
+      # crewB's steps are a copy/paste of crewA.
+      crewB:
         - step: Perform buddy checks
           checkboxes:
             - MWS tabs up
@@ -132,28 +143,28 @@ steps:
         - step: '{{CHECK}}WVS - Green LED'
   # MediaWiki formatter in place later.
   - simo:
-      EV1:
+      crewA:
         - step: Translate to S0 Port Struts
-        - step: Attach EV1 **BLANK** hook to port-outboard strut
+        - step: Attach {{role:crewA}} **BLANK** hook to port-outboard strut
           checkboxes:
             - '{{CHECK}} Gat closed, hook locked, reels unlocked, release RET'
-        - step: Attach EV2 **BLANK** hook to port-inboard strut
+        - step: Attach {{role:crewB}} **BLANK** hook to port-inboard strut
           checkboxes:
             - '{{CHECK}} Gate closed, hook locked'
-        - step: Release EV1 R Waist Tether from EV2 **BLANK** hook
-      EV2:
+        - step: Release {{role:crewA}} R Waist Tether from {{role:crewB}} **BLANK** hook
+      crewB:
         - step: Retrieve CETA ORU bag, stow on BRT with RET
 
-  # This corresponds to page 7-20, EV1 step 12 and EV2 step 8. I've re-written
+  # This corresponds to page 7-20, {{role:crewA}} step 12 and {{role:crewB}} step 8. I've re-written
   # it to be one step in a shared (merged) column.
   - simo:
-      EV1:
+      crewA:
         - step: Give **EV3 GO** to release Waist Tether
-      EV2:
-        - step: On **EV1 GO**, EV2 release right Waist Tether from Airlock internal D-Ring
+      crewB:
+        - step: On **{{role:crewA}} GO**, {{role:crewB}} release right Waist Tether from Airlock internal D-Ring
 
   - simo:
-      EV1:
+      crewA:
         - step: Translate forward along Lab.
         # "HR" means "handrail". At some point in the future it may be cool to use
         # some sort of template here like: "on Lab HR {{HR|0260}}, {{HR|0259}} ..."
@@ -163,7 +174,7 @@ steps:
         # HTML, not printed, version).
         - step: Stow EWC ORU bag on Lab HR 0260, 0259 with hinge ISS aft
         - step: Translate to S1 Face 1, zenith - MISSE 7 Retrieve
-      EV2:
+      crewB:
         - step: Close hatch thermal cover
         # best here would be to add IV's step using "causes".
         # causes:
