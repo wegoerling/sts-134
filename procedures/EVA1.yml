@@ -1,33 +1,75 @@
 procedure_name: STS-134 EVA 1
 
-# actors:
-#   - id: EV1
-#     name: Nick
-  # - id: EV2
-  #   name: Drew
 
 columns:
+
   - key: IV
     display: IV/SSRMS
     actors: "*"
+
   - key: EV1
     actors: EV1
     display: EV1 (Drew)
+
   - key: EV3
     actors: EV3
     display: EV3 (Taz)
 
 
 tasks:
+
   - file: egress.yml
     roles:
-      # crewA: EV1
-      # crewB: EV3
-
-      crewA: EV3
-      crewB: EV1
+      crewA: EV1
+      crewB: EV3
 
   - file: misse7.yml
+    roles:
+      crewA: EV1
+      crewB: EV3
+    color: "#FFD700"
+
+  - file: misse8.yml
+    roles:
+      crewA: EV1
+    color: "#FFD700"
+
+  - file: s3-ceta-light-install.yml
+    roles:
+      crewA: EV3
+
+  - file: stbd-sarj-cover-7-install.yml
+    roles:
+      crewA: EV3
+
+  - file: p3-p4-nh3-jumper-install.yml
+    roles:
+      crewA: EV1
+      crewB: EV3
+    color: "#00FFFF"
+
+  - file: p5-p6-nh3-jumper-install-n2-vent.yml
+    roles:
+      crewA: EV1
+    color: "#00FFFF"
+
+  - file: p3-p4-nh3-jumper-temp-stow.yml
+    roles:
+      crewA: EV3
+    color: "#00FFFF"
+
+  - file: ewc-antenna-install.yml
+    roles:
+      crewA: EV1
+      crewB: EV3
+    color: "#90EE90"
+
+  - file: vteb-reconfig.yml
+    roles:
+      crewA: EV1
+    color: "#00FFFF"
+
+  - file: ingress.yml
     roles:
       crewA: EV1
       crewB: EV3

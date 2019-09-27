@@ -1,0 +1,19 @@
+title: P3/P4 NH3 Jumper Install
+
+roles:
+  - name: crewA
+    description: Please add description
+    duration:
+      minutes: 35
+  - name: crewB
+    duration:
+      minutes: 25
+      offset:
+        minutes: 10
+
+
+steps:
+  - simo:
+      IV: TBD
+      crewA: TBD
+      # crewB: TBD

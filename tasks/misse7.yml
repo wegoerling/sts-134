@@ -2,14 +2,12 @@ title: MISSE 7 RETRIEVE
 
 roles:
   - name: crewA
-    description: Please add describe
+    description: Please add description
     duration:
       minutes: 60
   - name: crewB
     duration:
-      minutes: 45
-      offset:
-        minutes: 15
+      minutes: 60
 
 
 steps:

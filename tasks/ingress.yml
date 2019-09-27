@@ -1,0 +1,17 @@
+title: Cleanup / Ingress
+
+roles:
+  - name: crewA
+    description: Please add description
+    duration:
+      minutes: 30
+  - name: crewB
+    duration:
+      minutes: 30
+
+
+steps:
+  - simo:
+      IV: TBD
+      crewA: TBD
+      crewB: TBD

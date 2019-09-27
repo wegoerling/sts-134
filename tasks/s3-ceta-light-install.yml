@@ -1,0 +1,19 @@
+title: S3 CETA Light Install
+
+roles:
+  - name: crewA
+    description: Please add description
+    duration:
+      minutes: 25
+  # - name: crewB
+  #   duration:
+  #     minutes: 45
+  #     offset:
+  #       minutes: 15
+
+
+steps:
+  - simo:
+      IV: TBD
+      crewA: TBD
+      # crewB: TBD

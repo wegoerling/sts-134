@@ -1,0 +1,19 @@
+title: EWC Antenna Install
+
+roles:
+  - name: crewA
+    description: Please add description
+    duration:
+      hours: 2
+      minutes: 20
+  - name: crewB
+    duration:
+      hours: 2
+      minutes: 45
+
+
+steps:
+  - simo:
+      IV: TBD
+      crewA: TBD
+      crewB: TBD
